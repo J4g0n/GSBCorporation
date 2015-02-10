@@ -1,6 +1,8 @@
+import com.gsb.controles.GestionPrincipale;
 import com.gsb.modeles.Region;
 import com.gsb.modeles.Utilisateur;
 import com.gsb.vues.Fen_Connexion;
+import com.gsb.vues.Fen_Principale;
 import com.gsb.vues.util.ParametresIHM;
 
 import java.util.Vector;
@@ -19,7 +21,6 @@ public class Main {
             System.out.println(reg.getLibelle());
         }
 
-        Fen_Connexion fen_connexion = new Fen_Connexion();
-        fen_connexion.setVisible(true);
+        GestionPrincipale.init();
     }
 }

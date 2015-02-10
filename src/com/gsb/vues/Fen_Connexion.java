@@ -1,5 +1,6 @@
 package com.gsb.vues;
 
+import com.gsb.controles.GestionPrincipale;
 import com.gsb.modeles.Utilisateur;
 import com.gsb.vues.util.ParametresIHM;
 
@@ -38,7 +39,8 @@ public class Fen_Connexion extends JFrame {
         this.setContentPane(loginPanel);
 
         this.setTitle(parametresIHM.getTitre());
-        this.setSize(400, 200); // largeur, hauteur
+        this.setBackground(parametresIHM.getCouleurFond());
+        this.setSize(200, 200); // largeur, hauteur
         this.setResizable(true); // redimensionnable ou pas
         this.setLocationRelativeTo(null); // positionnement par rapport à une autre fenetre
     }
@@ -56,6 +58,8 @@ public class Fen_Connexion extends JFrame {
 
         if (utilisateur.verifier()) {
             JOptionPane.showMessageDialog(null, "Login effectué, cliquer sur ok pour continuer...", "Login réussi",  JOptionPane.CLOSED_OPTION);
+            GestionPrincipale.gerer();
+            this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "Mauvais login ou mot de passe", "Echec login",  JOptionPane.OK_OPTION);
         }
