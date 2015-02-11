@@ -48,8 +48,11 @@ public class Fen_Regions extends JFrame {
         JButton ajouter = new JButton("Ajouter");
         ajouter.addActionListener((e) -> GestionRegions.afficherAjouterRegion());
         JButton modifier = new JButton("Modifier");
+        modifier.addActionListener((e) -> GestionRegions.afficherModifierRegion());
         JButton supprimer = new JButton("Supprimer");
+        supprimer.addActionListener((e) -> GestionRegions.afficherSupprimerRegion());
         JButton consulter  = new JButton("Consulter");
+        consulter.addActionListener((e) -> GestionRegions.afficherConsulterRegion());
         JButton quitter = new JButton("Quitter");
         quitter.addActionListener((e) -> this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING)));
 

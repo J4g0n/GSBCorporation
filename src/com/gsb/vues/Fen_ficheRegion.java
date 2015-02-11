@@ -15,9 +15,11 @@ public class Fen_ficheRegion extends JFrame {
     private JTextField txtlibelleRegion;
     private JButton btnSauver;
     private JButton btnAnnuler;
+    private String type;
 
-    public Fen_ficheRegion() {
+    public Fen_ficheRegion(String type) {
         super();
+        this.type = type;
         ParametresIHM parametresIHM = new ParametresIHM();
         JPanel regionPanel = new JPanel();
         lblCodeRegion = new JLabel("Numéro: ");
@@ -33,8 +35,10 @@ public class Fen_ficheRegion extends JFrame {
         regionPanel.add(txtCodeRegion);
         regionPanel.add(lblLibelleRegion);
         regionPanel.add(txtlibelleRegion);
-        regionPanel.add(btnSauver);
-        regionPanel.add(btnAnnuler);
+        if (!type.equals("consulter")) {
+            regionPanel.add(btnSauver);
+            regionPanel.add(btnAnnuler);
+        }
 
         this.setContentPane(regionPanel);
 
@@ -51,9 +55,24 @@ public class Fen_ficheRegion extends JFrame {
     }
 
     private void handleValider() {
+        traitement();
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }
+
+    private void traitement() {
         int code = Integer.parseInt(txtCodeRegion.getText());
         String libelle = txtlibelleRegion.getText();
-        GestionRegions.ajouterRegion(code, libelle);
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+
+        switch (type) {
+            case "ajouter":
+                GestionRegions.ajouterRegion(code, libelle);
+                break;
+            case "modifier":
+                GestionRegions.modifierRegion(code, libelle);
+                break;
+            case "supprimer":
+                GestionRegions.supprimerRegion(code, libelle);
+                break;
+        }
     }
 }
