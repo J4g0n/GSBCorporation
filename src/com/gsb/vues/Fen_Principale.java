@@ -1,11 +1,14 @@
 package com.gsb.vues;
 
 
+import com.gsb.controles.GestionRegions;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.function.Function;
 
 public class Fen_Principale extends JFrame {
     private JMenuBar menuBar;
@@ -41,18 +44,18 @@ public class Fen_Principale extends JFrame {
 
         localisation = new JMenu("Localisation");
         gestionResponsables = new JMenu("Gestion Responsables [Régions]");
-        ajouterGestionnaire(gestionResponsables);
+        ajouterGestionnaire(gestionResponsables, null);
         gestionDelegues = new JMenu("Gestion Délégués [Secteurs]");
-        ajouterGestionnaire(gestionDelegues);
+        ajouterGestionnaire(gestionDelegues, null);
         gestionVisiteurs = new JMenu("Gestion Visiteurs [Départements]");
-        ajouterGestionnaire(gestionVisiteurs);
+        ajouterGestionnaire(gestionVisiteurs, null);
 
         gestionRegions = new JMenu("Gestion Région");
-        ajouterGestionnaire(gestionRegions);
+        ajouterGestionnaire(gestionRegions, (e) -> GestionRegions.afficherListRegions());
         gestionSecteurs = new JMenu("Gestion Secteur");
-        ajouterGestionnaire(gestionSecteurs);
+        ajouterGestionnaire(gestionSecteurs, null);
         gestionDepartement = new JMenu("Gestion Département");
-        ajouterGestionnaire(gestionDepartement);
+        ajouterGestionnaire(gestionDepartement, null);
 
         localisation.add(gestionRegions);
         localisation.add(gestionSecteurs);
@@ -74,8 +77,13 @@ public class Fen_Principale extends JFrame {
         this.setExtendedState(this.MAXIMIZED_BOTH);
     }
 
-    private void ajouterGestionnaire(JMenuItem gestionnaire) {
+    private void ajouterGestionnaire(JMenuItem gestionnaire, Function callBack) {
         JMenuItem gerer = new JMenuItem("Gerer");
+        gerer.addActionListener((e) -> {
+            if (callBack != null) {
+                callBack.apply(new Object());
+            }
+        });
         JMenuItem imprimer = new JMenuItem("Imprimer");
         gestionnaire.add(gerer);
         gestionnaire.add(imprimer);

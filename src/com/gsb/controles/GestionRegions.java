@@ -1,6 +1,7 @@
 package com.gsb.controles;
 
 import com.gsb.modeles.Region;
+import com.gsb.vues.Fen_Regions;
 import com.gsb.vues.Fen_ficheRegion;
 
 import java.util.Vector;
@@ -9,6 +10,13 @@ import java.util.Vector;
  * Created by ipi on 10/02/2015.
  */
 public class GestionRegions {
+    public static int afficherListRegions() {
+        Fen_Regions fen = new Fen_Regions();
+        fen.setVisible(true);
+
+        return 0;
+    }
+
     public static Vector getRegionsList() {
         Vector<Region> regions = Region.lst();
         Vector result = new Vector();

@@ -22,9 +22,9 @@ public class Main {
             System.out.println(reg.getLibelle());
         }*/
 
-        Fen_Regions fen = new Fen_Regions();
-        fen.setVisible(true);
+        //Fen_Regions fen = new Fen_Regions();
+        //fen.setVisible(true);
 
-        //GestionPrincipale.init();
+        GestionPrincipale.init();
     }
 }
