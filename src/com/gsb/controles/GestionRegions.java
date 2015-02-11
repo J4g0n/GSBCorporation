@@ -1,6 +1,7 @@
 package com.gsb.controles;
 
 import com.gsb.modeles.Region;
+import com.gsb.vues.Fen_ficheRegion;
 
 import java.util.Vector;
 
@@ -13,8 +14,6 @@ public class GestionRegions {
         Vector result = new Vector();
 
         for (Region region: regions) {
-//System.out.println(r.getIdRegion()+" ===== "+r.getNomRegion());
-            System.out.println(region.getId()+" "+region.getLibelle());
             Vector row = new Vector();
             row.add(Integer.toString(region.getId()));
             row.add(region.getLibelle());
@@ -22,5 +21,15 @@ public class GestionRegions {
         }
 
         return result;
+    }
+
+    public static void afficherAjouterRegion() {
+        Fen_ficheRegion fenFicheRegion = new Fen_ficheRegion();
+        fenFicheRegion.setVisible(true);
+    }
+
+    public static void ajouterRegion(int numeroRegion, String nomRegion) {
+        Region region = new Region(numeroRegion, nomRegion);
+        region.creer();
     }
 }
